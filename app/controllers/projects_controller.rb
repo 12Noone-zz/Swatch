@@ -9,16 +9,25 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(project_params)
-		if @project.save
-			redirect_to @project
-		else
-			redirect_to "projects#new"
-		end
+		@project.user = current_user
+
+	  	respond_to do |format|
+	    	if @project.save
+	      		format.html  { redirect_to(@project,
+	                    :notice => 'Project was successfully created.') }
+	      		format.json  { render :json => @project,
+	                    :status => :created, :location => @project }
+	    	else
+	      		format.html  { render :action => "new" }
+	      		format.json  { render :json => @project.errors,
+	                    :status => :unprocessable_entity }
+	    	end
+	  	end
 	end
 
 	private
 
  	def project_params
- 		params.require(:project).permit(:title, :image, :image1, :content, :notes)
+ 		params.require(:project).permit(:title, :image, :image_file_name, :content, :notes)
  	end
 end

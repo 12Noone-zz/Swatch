@@ -196,7 +196,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   omniauth-facebook (~> 1.4.1)
-  paperclip
+  paperclip (~> 4.3)
   pg
   rails (= 4.2.3)
   rails_12factor

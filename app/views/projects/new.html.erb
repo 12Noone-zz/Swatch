@@ -1,34 +1,16 @@
 <h1>NEW PROJECT FORM</h1>
 <div class="new-post">
+<%= form_for @project, html: { multipart: true } do |f| %>
+	
+	<div class="title">
+		<%= f.text_field :title, :placeholder => "Title" %>
+	</div>
 
-	<form action="/projects" method="post">
-		<input type="text" name="project[title]" placeholder="Project Name">
-		<textarea name="project[content]" placeholder="Details"></textarea>
-		<div class="file-field">
-      		<input class="file-path" type="text" placeholder="Add image" class="image-hover"/>
-      		<input type="file" name="project[image1]"/>
-      	</div>
-		<textarea name="project[notes]" placeholder="Notes"></textarea>
-		<div class="file-field">
-      		<input class="file-path" type="text" placeholder="Add image" class="image-hover"/>
-      		<input type="file" name="project[image2]"/>
-      	</div>
-		<textarea name="project[notes]" placeholder="Notes"></textarea>
-		<div class="file-field">
-      		<input class="file-path" type="text" placeholder="Add image" class="image-hover"/>
-      		<input type="file" name="project[image3]"/>
-      	</div>
-		<textarea name="project[notes]" placeholder="Notes"></textarea>
-		<div class="file-field">
-      		<input class="file-path" type="text" placeholder="Add image" class="image-hover"/>
-      		<input type="file" name="project[image4]"/>
-      </div>
-		<textarea name="project[notes]" placeholder="Notes"></textarea>
-		<div class="file-field">
-      		<input class="file-path" type="text" placeholder="Add image" class="image-hover"/>
-      		<input type="file" name="project[image5]"/>
-      </div>
-		<textarea name="project[notes]" placeholder="Notes"></textarea>
+	<div class="content">
+		<%= f.text_field :content, :placeholder => "Details" %>
+	</div>
+	<%= f.file_field :image, placeholder: "Upload Photo"%>
+	</div>
 		<input type="submit" placeholder="Submit!">
-	</form>
+	<% end %>
 </div>
