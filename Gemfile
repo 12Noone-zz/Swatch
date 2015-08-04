@@ -31,8 +31,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-  gem 'omniauth-facebook', '~> 1.4.1'
+gem 'omniauth-facebook', '~> 1.4.1'
 
+gem 'aws-sdk', '< 2.0'	# amazon web services gem
+gem 'paperclip' 		# paperclip gem for file management
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -46,7 +48,5 @@ group :development, :test do
 
   gem 'rails_12factor', group: :production
 
-  gem 'aws-sdk', '< 2.0'	# amazon web services gem
-  gem 'paperclip' 		# paperclip gem for file management
 end
 
