@@ -1,0 +1,26 @@
+<nav class="navbar">
+	<ul>
+		<li><a href="#">Sign Out</a></li>
+		<li><a href="<%= new_project_path %>">New Project!</a></li>
+	</ul>
+</nav>
+<div id="show">
+	<% @projects.sort{ |a,b| b.created_at <=> a.created_at }.each do |project| %>
+		<div id="project-title">
+			<h2><a href="/projects/<%=project.id%>"><%= project.title %></a></h2>
+		</div>
+		<p>
+			<span><%= post.created_at.to_date %>
+				<i class="fa fa-circle"></i> by <%= project.user.name %> 
+				<i class="fa fa-circle"></i> <a href="/projects/<%=project.id%>/#comments">Comments <%=post.comments.length %></a> 
+				<i class="fa fa-circle"></i>
+			</span>
+		</p>
+		<!-- photos -->
+		<% project.attachments.each do |image| %>
+			<div class="image-div"><%= image_tag image.url %></div><br>
+		<% end %>
+		<p><%= project.content %></p>
+	<% end %>
+	<hr>
+</div>
