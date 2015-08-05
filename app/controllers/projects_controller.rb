@@ -8,30 +8,22 @@ class ProjectsController < ApplicationController
 	end
 
 	def show 
+      	@comment = Comment.new
+		
+
 		@project = Project.find(params[:id])
 		respond_to do |format|
       		format.html  # show.html.erb
       		format.json  { render :json => @project }
       	end
+
 	end
 
 
 	def create
 		@project = Project.new(project_params)
-		@project.user = current_user
-
-	  	respond_to do |format|
-	    	if @project.save
-	      		format.html  { redirect_to(@project,
-	                    :notice => 'Project was successfully created.') }
-	      		format.json  { render :json => @project,
-	                    :status => :created, :location => @project }
-	    	else
-	      		format.html  { render :action => "projects" }
-	      		format.json  { render :json => @project.errors,
-	                    :status => :unprocessable_entity }
-	    	end
-	  	end
+		@project.save
+		redirect_to project_path(@project)
 	end
 
 	def edit
@@ -39,18 +31,15 @@ class ProjectsController < ApplicationController
 	end
 
 	def update
+		
 		@project = Project.find(params[:id])
 
-		respond_to do |format|
-			if @project.update_attributes(project_params)
-				format.html {redirect_to(@project,
-					:notice => 'Project was successfully updated')}
-				format.json {head :no_content}
-			else
-				format.html {render :action => "edit"}
-				format.json {render :json => @project.errors,
-					:status => :unprocessable_entity}
-			end
+		@project.update(project_params)
+
+		if @project.errors
+			render :edit
+		else
+			redirect_to @project
 		end
 	end
 

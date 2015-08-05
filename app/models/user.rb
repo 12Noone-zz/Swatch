@@ -15,18 +15,18 @@ class User < ActiveRecord::Base
 
 	has_many :favorites, dependent: :destroy
 
-	validates :username, presence: true
-	validates :email, presence: true
-	validates :password_digest, presence: true
-	validates :password, length: { minimum: 6 }, allow_nil: true
+	# validates :username, presence: true
+	# validates :email, presence: true
+	# validates :password_digest, presence: true
+	# validates :password, length: { minimum: 6 }, allow_nil: true
 
 	has_many(:favorite_projects, {through: :favorites, source: :project})
 
-	has_attached_file :avatar, styles: {
-	med: "200x200#",
-	}
+	# has_attached_file :avatar, styles: {
+	# med: "200x200#",
+	# }
 
-	validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+	# validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
 end
 

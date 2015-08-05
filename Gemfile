@@ -34,8 +34,11 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'omniauth-facebook', '~> 1.4.1'
 
 gem 'aws-sdk', '< 2.0'	  # amazon web services gem
-gem "paperclip", '~> 4.3' # paperclip gem for file management
+gem "paperclip"  # paperclip gem for file management
 
+gem 'rails_12factor', group: :production
+
+gem 'dotenv-rails', :groups => [:development, :test] # OH NOES
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -46,11 +49,5 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
-
-  gem 'rails_12factor', group: :production
-
-
-
 end
 

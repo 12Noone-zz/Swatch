@@ -18,11 +18,11 @@ ActiveRecord::Schema.define(version: 20150804191449) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "title"
-    t.string   "content"
-    t.string   "author"
+    t.string   "body"
+    t.string   "author_name"
     t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "comments", ["project_id"], name: "index_comments_on_project_id", using: :btree

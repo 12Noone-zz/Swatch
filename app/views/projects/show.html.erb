@@ -1,9 +1,15 @@
-
-<h1>this is fucking bullshit.</h1>
 <h2><%= @project.title %> </h2>
-<h3><strong>By:</strong> <%= current_user.name %></h3>
+<!-- <h3><strong>By:</strong> <%#= current_user.name %></h3> -->
 <p><%= @project.content %></p>
 
+	
 
-<a href="/projects/<%=@project.id%>/edit">Edit</a>
-<%= link_to 'Delete', @project, method: :delete %>
+<%= image_tag @project.image.url %>
+
+<h3>Comments</h3>
+<%= render partial: 'projects/comment', colection: @project.comments %>
+
+<%= link_to "Edit", edit_project_path(@project) %> 
+<%= link_to "Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure you want to do this?"} %>
+
+<%= render partial: 'comments/form' %>
