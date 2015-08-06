@@ -10,9 +10,8 @@ class CreateProjects < ActiveRecord::Migration
       t.attachment :image3
       t.attachment :image4
       t.attachment :image5
-
-      t.references :user, index: true, foreign_key: true
       
+      t.references :house, index: true, foreign_key: true
       t.timestamps null: false
     end
   end

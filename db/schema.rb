@@ -27,24 +27,19 @@ ActiveRecord::Schema.define(version: 20150805182617) do
 
   add_index "comments", ["project_id"], name: "index_comments_on_project_id", using: :btree
 
-  create_table "favorites", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "favorites", ["project_id"], name: "index_favorites_on_project_id", using: :btree
-  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
-
   create_table "houses", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "title"
+    t.string   "content"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
-  add_index "houses", ["project_id"], name: "index_houses_on_project_id", using: :btree
   add_index "houses", ["user_id"], name: "index_houses_on_user_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
@@ -72,7 +67,7 @@ ActiveRecord::Schema.define(version: 20150805182617) do
     t.string   "image5_content_type"
     t.integer  "image5_file_size"
     t.datetime "image5_updated_at"
-    t.integer  "user_id"
+    t.integer  "house_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "image_file_name"
@@ -81,7 +76,7 @@ ActiveRecord::Schema.define(version: 20150805182617) do
     t.datetime "image_updated_at"
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+  add_index "projects", ["house_id"], name: "index_projects_on_house_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -114,11 +109,8 @@ ActiveRecord::Schema.define(version: 20150805182617) do
   end
 
   add_foreign_key "comments", "projects"
-  add_foreign_key "favorites", "projects"
-  add_foreign_key "favorites", "users"
-  add_foreign_key "houses", "projects"
   add_foreign_key "houses", "users"
-  add_foreign_key "projects", "users"
+  add_foreign_key "projects", "houses"
   add_foreign_key "taggings", "projects"
   add_foreign_key "taggings", "tags"
 end
