@@ -33,14 +33,9 @@ class ProjectsController < ApplicationController
 	def update
 		
 		@project = Project.find(params[:id])
-
 		@project.update(project_params)
+		redirect_to project_path(@project)
 
-		if @project.errors
-			render :edit
-		else
-			redirect_to @project
-		end
 	end
 
 	def destroy
@@ -55,6 +50,6 @@ class ProjectsController < ApplicationController
 	private
 
  	def project_params
- 		params.require(:project).permit(:title, :image, :image_file_name, :content, :notes)
+ 		params.require(:project).permit(:title, :image, :image_file_name, :content, :notes, :tag_list)
  	end
 end

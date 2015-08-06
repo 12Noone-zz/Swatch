@@ -7,7 +7,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :oauth_token
       t.datetime :oauth_expires_at
       t.string :username
-      t.attachment :avatar
       t.boolean :is_private
       t.string :password_digest
       t.string :email

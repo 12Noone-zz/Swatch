@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 		if @user.save
 			login!(@user)
 			redirect_to root_path
+			
 
 		else
 			flash[:message]=@user.errors.full_messages.to_sentence
@@ -23,6 +24,6 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		 params.require(:user).permit(:name)
+		 params.require(:user).permit(:name, :password)
 	end
 end

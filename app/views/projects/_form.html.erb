@@ -9,6 +9,10 @@
 		</div>
 		 
 		<%= f.file_field :image, placeholder: "Upload Photo"%>
+		<p>
+  			<%= f.label :tag_list %><br/>
+  			<%= f.text_field :tag_list %>
+		</p>
 		<input type="submit" placeholder="submit"/>
 	<% end %>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804191449) do
+ActiveRecord::Schema.define(version: 20150805182617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,22 @@ ActiveRecord::Schema.define(version: 20150804191449) do
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "taggings", ["project_id"], name: "index_taggings_on_project_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "provider"
     t.string   "uid"
@@ -90,15 +106,11 @@ ActiveRecord::Schema.define(version: 20150804191449) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.string   "username"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.boolean  "is_private"
     t.string   "password_digest"
     t.string   "email"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_foreign_key "comments", "projects"
@@ -107,4 +119,6 @@ ActiveRecord::Schema.define(version: 20150804191449) do
   add_foreign_key "houses", "projects"
   add_foreign_key "houses", "users"
   add_foreign_key "projects", "users"
+  add_foreign_key "taggings", "projects"
+  add_foreign_key "taggings", "tags"
 end
