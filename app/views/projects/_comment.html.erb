@@ -2,7 +2,7 @@
 	<% @project.comments.each do |comment| %>
 		<div class="comment">
 			<% if comment.body %>
-				<p><%= comment.author_name %>
+				<p><%= current_user.name %>
 				<p><%= comment.body %></p>
 				<i><%= comment.created_at %></i>
 			<% end %>

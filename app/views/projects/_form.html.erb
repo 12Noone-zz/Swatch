@@ -1,4 +1,4 @@
-<div class="new-post">
+<div class="new-post pure-form">
 	<%= form_for @project, :html => { :multipart => true } do |f| %>
 		<div class="title">
 			<%= f.text_field :title, :placeholder => "Title" %>
@@ -8,7 +8,7 @@
 			<%= f.text_field :content, :placeholder => "Details" %>
 		</div>
 		 
-		<%= f.file_field :image, placeholder: "Upload Photo"%>
+		 <%= f.file_field :image, placeholder: "Upload Photo"%> 
 		<p>
   			<%= f.label :tag_list %><br/>
   			<%= f.text_field :tag_list %>

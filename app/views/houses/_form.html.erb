@@ -1,13 +1,13 @@
 <h1>NEW FORM FOR HOUSE!</h1>
 
-<div class="new-house">
+<div class="new-house pure-form">
 	<%= form_for @house, :html => { :multipart => true } do |f| %>
 		<div class="title">
 			<%= f.text_field :title, :placeholder => "Title" %>
 		</div>
 
 		<div class="content">
-			<%= f.text_field :content, :placeholder => "Details" %>
+			<%= f.text_area :content, :placeholder => "Details" %>
 		</div>
 		 
 		<%= f.file_field :image, placeholder: "Upload Photo"%>

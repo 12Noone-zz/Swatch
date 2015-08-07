@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+	before_action :require_current_user, :except => :index
+
 	def index
 		@project = Project.all
 	end

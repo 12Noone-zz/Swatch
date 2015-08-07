@@ -1,5 +1,47 @@
+ <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1623266214592881',
+          xfbml      : true,
+          version    : 'v2.4'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+      FB.ui({
+  method: 'share_open_graph',
+  action_type: 'og.likes',
+  action_properties: JSON.stringify({
+    object:'https://developers.facebook.com/docs/',
+  })
+}, function(response){
+  // Debug response (optional)
+  console.log(response);
+});
+ </script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=811341652298473";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
 <h2><%= @project.title %> </h2>
-<!-- <h3><strong>By:</strong> <%#= current_user.name %></h3> -->
+
+<div class="fb-share-button" data-href="http://localhost:3000/projects/2" data-layout="button_count"></div>
+<h3><strong>By:</strong> <%= current_user.name %></h3>
 <p>
   Tags:
   <% @project.tags.each do |tag| %>
@@ -12,10 +54,11 @@
 
 <%= image_tag @project.image.url %>
 
+<%= link_to "Edit", edit_project_path(@project) %> 
+<%= link_to "Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure you want to do this?"} %>
+
 <h3>Comments</h3>
 <%= render partial: 'projects/comment', colection: @project.comments %>
 
-<%= link_to "Edit", edit_project_path(@project) %> 
-<%= link_to "Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure you want to do this?"} %>
 
 <%= render partial: 'comments/form' %>

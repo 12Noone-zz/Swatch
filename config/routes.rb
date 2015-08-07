@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   resources :users
-  resources :favorites
-  resources :houses
   resources :tags
+  resources :house
   resources :projects do
-    resources :comments
+      resources :comments
   end
+    resources :sessions, only: [:create, :destroy]
+    resource :home, only: [:show]
   
     root to: "home#show"
   
@@ -13,9 +14,7 @@ Rails.application.routes.draw do
     get 'auth/failure', to: redirect('/')
     
     get 'signout', to: 'sessions#destroy', as: 'signout'
-
-    resources :sessions, only: [:create, :destroy]
-    resource :home, only: [:show]
+    get '/houses' => 'houses#index'
 
 
 end
