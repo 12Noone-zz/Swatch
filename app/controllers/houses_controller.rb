@@ -1,7 +1,7 @@
 class HousesController < ApplicationController
 
 	def index
-		@user_houses = @current_user.houses
+		@user_houses = current_user.houses
 	end
 
 	def new 
@@ -20,13 +20,13 @@ class HousesController < ApplicationController
       	end
 
 	end
+
 	def create
 		@house = House.new(house_params)
+		@house.user_id = current_user.id
 		@house.save
 		redirect_to house_path(@house)
 	end
-
-	
 
 	private
 

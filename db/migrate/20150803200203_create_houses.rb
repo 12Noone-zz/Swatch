@@ -4,7 +4,7 @@ class CreateHouses < ActiveRecord::Migration
       t.string	:title
       t.string	:content
       t.attachment	:image
-      t.references :user, index: true, foreign_key: true
+      t.references :user
       t.timestamps null: false
     end
   end
