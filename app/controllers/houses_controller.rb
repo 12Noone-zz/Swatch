@@ -1,16 +1,11 @@
 class HousesController < ApplicationController
+
 	def index
-		@house = House.all
+		@user_houses = @current_user.houses
 	end
 
 	def new 
 		@house = House.new
-	end
-
-	def create
-		@house = House.new(house_params)
-		@house.save
-		redirect_to house_path(@house)
 	end
 
 	def show 
@@ -25,11 +20,17 @@ class HousesController < ApplicationController
       	end
 
 	end
+	def create
+		@house = House.new(house_params)
+		@house.save
+		redirect_to house_path(@house)
+	end
+
 	
 
 	private
 
 	def house_params
- 		params.require(:house).permit(:title, :image, :image_file_name, :content)
+ 		params.require(:house).permit(:title, :image, :content)
  	end
 end

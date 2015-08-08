@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 		puts "in create session ctrl"
 		user = User.from_omniauth(env["omniauth.auth"])
 		session[:user_id] = user.id
-		redirect_to houses_path
+		redirect_to root_path
 	end
 
 	def destroy

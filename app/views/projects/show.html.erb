@@ -51,8 +51,17 @@
 <p><%= @project.content %></p>
 
 	
-
-<%= image_tag @project.image.url %>
+<div class="slider">
+    <ul class="slides">
+      <% @project.attachments.each do |image| %>
+      <li>
+        <%= image_tag image.url() %>
+        <div class="caption center-align">
+        </div>
+      </li>
+    <% end %>
+    </ul>
+</div>
 
 <%= link_to "Edit", edit_project_path(@project) %> 
 <%= link_to "Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure you want to do this?"} %>

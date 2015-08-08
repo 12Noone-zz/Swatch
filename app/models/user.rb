@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
-	has_many :projects, dependent: :destroy
-	has_many :comments, dependent: :destroy
-	has_many :favorites, dependent: :destroy
-	has_many(:favorite_projects, {through: :favorites, source: :project})
+	has_many :houses
+	has_many :projects, through: :houses, dependent: :destroy
+	has_many :comments, through: :projects, dependent: :destroy
 
 	def self.from_omniauth(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create.tap do |user|

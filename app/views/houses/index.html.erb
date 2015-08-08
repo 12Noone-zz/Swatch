@@ -1,5 +1,14 @@
 <h1>Welcome Home <%= current_user.name %>!</h1>
+
 <h3>A house holds all of your projects and keeps them together</h3>
-<li><a href="<%= new_house_path %>">Start a House!</a></li>
-
-
+<div id="show">
+	<ul>
+		<% @user_houses.each do |house| %>
+		<li>
+			<a href="/houses/<%=house.id%>"><%= house.title %></a>
+			
+		</li>
+		<% end %>
+	</ul>
+	<a href="<%= new_house_path %>">Start a new house!</a>
+</div>
