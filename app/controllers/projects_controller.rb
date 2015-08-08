@@ -24,8 +24,11 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(project_params)
+		redirect_to root_path
+		
+		# @project.house_id = current_user.id
+		
 		@project.save
-		redirect_to project_path(@project)
 	end
 
 	def edit

@@ -1,17 +1,13 @@
 class House < ActiveRecord::Base
+
 	
 	belongs_to :user
 	has_many :projects
 
 
-  	has_attached_file :image1, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  	has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
+    
+    validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
-  	 def attachments
-    [:image].map do |assn|
-      self.try(assn)
-    end.reject do |img|
-        # img.url.include? "missing.png"
-    end
-  end
 end
 

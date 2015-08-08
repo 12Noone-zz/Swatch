@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :require_current_user
   helper_method :current_user
-  helper_method :current_houses
+  # helper_method :current_houses
 
   def require_current_user
     unless current_user
@@ -17,9 +17,9 @@ class ApplicationController < ActionController::Base
     rescue ActiveRecord::RecordNotFound
   end
 
-  def current_houses
-    @current_houses ||= House.find_by(id: session[:current_user_id])
+  # def current_houses
+  #   @current_houses ||= House.find_by(id: session[:current_user_id])
     
-  end
+  # end
 
 end

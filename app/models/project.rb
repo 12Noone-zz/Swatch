@@ -16,15 +16,16 @@ class Project < ActiveRecord::Base
 
   has_attached_file :image5, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
-
-
+  validates_attachment_content_type :image1, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates_attachment_content_type :image2, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates_attachment_content_type :image3, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates_attachment_content_type :image4, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates_attachment_content_type :image5, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
 	
   def attachments
     [:image1, :image2, :image3, :image4, :image5].map do |assn|
       self.try(assn)
-    end.reject do |img|
-        # img.url.include? "missing.png"
     end
   end
 

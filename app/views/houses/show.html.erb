@@ -2,8 +2,14 @@
 <h3><strong>By:</strong> <%= current_user.name %></h3>
 
 <p><%= @house.content %></p>
-
-	
-
-<!-- <%#= image_tag @house.image.url %> -->
+<%= link_to image_tag(@house.image.url(:large)), @house.image.url %>
+<div id="show">
+	<ul>
+		<% @project.each do |project| %>
+		<li>
+			<a href="<%= projects_path %>/<%= project.id %>"><%= project.title %></a>
+			
+		</li>
+		<% end %>
+	</ul>
 <li><a href="<%= new_project_path %>">New Project!</a></li>

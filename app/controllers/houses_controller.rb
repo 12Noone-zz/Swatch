@@ -6,14 +6,18 @@ class HousesController < ApplicationController
 
 	def new 
 		@house = House.new
+		@project = Project.new
 	end
 
 	def show 
-
-      	@project = Project.new
+		# @project = Project.all
+		# @project = Project.find(params[:id])
+  		
+  		# @project.house_id = params[:house_id]
+      	# @project = Project.new
 		
-
 		@house = House.find(params[:id])
+		@project = @house.projects
 		respond_to do |format|
       		format.html  # show.html.erb
       		format.json  { render :json => @house }
@@ -25,7 +29,7 @@ class HousesController < ApplicationController
 		@house = House.new(house_params)
 		@house.user_id = current_user.id
 		@house.save
-		redirect_to house_path(@house)
+		redirect_to house_projects_path(@house)
 	end
 
 	private
