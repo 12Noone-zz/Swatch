@@ -4,7 +4,11 @@ class CreateProjects < ActiveRecord::Migration
       t.string :title
       t.string :author
       t.string :content
-      t.string :notes
+      t.string :notes1
+      t.string :notes2
+      t.string :notes3
+      t.string :notes4
+      t.string :notes5
       t.attachment :image1
       t.attachment :image2
       t.attachment :image3

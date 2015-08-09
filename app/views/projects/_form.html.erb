@@ -5,14 +5,19 @@
 		</div>
 
 		<div class="content">
-			<%= f.text_field :content, :placeholder => "Details" %>
+			<%= f.text_area :content, :placeholder => "Details" %>
 		</div>
 		 
-		 <%= f.file_field :image1, placeholder: "Upload Photo"%> 
+		 <%= f.file_field :image1, placeholder: "Upload Photo"%>
+		 <%= f.text_area :notes, :placeholder => "More about this project!" %> <br>
 		 <%= f.file_field :image2, placeholder: "Upload Photo"%>
+		 <%= f.text_area :notes, :placeholder => "More about this project!" %> <br>
 		 <%= f.file_field :image3, placeholder: "Upload Photo"%>
+		 <%= f.text_area :notes, :placeholder => "More about this project!" %> <br>
 		 <%= f.file_field :image4, placeholder: "Upload Photo"%>
+		 <%= f.text_area :notes, :placeholder => "More about this project!" %> <br>
 		 <%= f.file_field :image5, placeholder: "Upload Photo"%>
+		 <%= f.text_area :notes, :placeholder => "More about this project!" %>
 		<p>
   			<%= f.label :tag_list %><br/>
   			<%= f.text_field :tag_list %>

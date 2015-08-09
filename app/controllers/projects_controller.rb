@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
 
 	def new 
 		@house = House.find(params["house_id"])
+		
 		@project = Project.new
 		@project.house_id = @house.id
 	end

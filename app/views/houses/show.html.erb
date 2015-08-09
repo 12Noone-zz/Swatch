@@ -7,15 +7,14 @@
 	<ul>
 		<% @project.each do |project| %>
 		<li>
-			<a href="<%= projects_path %>/<%= project.id %>"><%= project.title %></a>
-			
+			<%= link_to project.title, house_project_path(@house, project) %> 
 		</li>
 		<% end %>
 	</ul>
-<li><a href="<%= new_project_path %>">New Project!</a></li>
+<%= link_to 'New Project!', new_house_project_path(@house, @project) %>
 
-<% if current_user %> 
-	<%= link_to "Delete House", house_path(@house), method: :delete, data: {confirm: "This is the equivilant of pouring gasoline in the trashcan, dropping a match, and walking out the front door whistling. All projects will be lost..."} %>
+<% if current_user == @house.user_id %> 
+	<%= link_to "Delete House", house_path(@house), method: :delete, data: {confirm: "Deleting your house will also delete all projects and comments inside it!"} %>
 
-	<%= link_to "Edit House", house_path(@house), method: :update %>
+	<%= link_to "Edit House", edit_house_path(@house) %>
 <% end %>
