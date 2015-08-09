@@ -10,11 +10,7 @@ class HousesController < ApplicationController
 	end
 
 	def show 
-		# @project = Project.all
-		# @project = Project.find(params[:id])
-  		
-  		# @project.house_id = params[:house_id]
-      	# @project = Project.new
+      	@project = Project.new
 		
 		@house = House.find(params[:id])
 		@project = @house.projects
@@ -23,14 +19,33 @@ class HousesController < ApplicationController
       		format.json  { render :json => @house }
       	end
 
+		
+
 	end
 
 	def create
+		@project = Project.new
 		@house = House.new(house_params)
 		@house.user_id = current_user.id
 		@house.save
 		redirect_to house_projects_path(@house)
 	end
+
+	def destroy
+		@house = House.find(params[:id])
+		@house.destroy
+
+		respond_to do |format|
+			format.html {redirect_to houses_url}
+		end
+	end
+
+		def update		
+		@house = House.find(params[:id])
+		@house.update(house_params)
+		redirect_to house_path(@house)
+	end
+
 
 	private
 

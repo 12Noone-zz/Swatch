@@ -6,7 +6,9 @@ class ProjectsController < ApplicationController
 	end
 
 	def new 
+		@house = House.find(params["house_id"])
 		@project = Project.new
+		@project.house_id = @house.id
 	end
 
 	def show 
@@ -24,23 +26,24 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(project_params)
-		redirect_to root_path
-		
-		# @project.house_id = current_user.id
-		
+		@project.house_id = params["house_id"]
+		puts "CREATE THE THING"
+		puts @project.house_id
+		# TODO: handle errors here
 		@project.save
+
+		# redirect_to root_path
+		redirect_to project_path(@project)
 	end
 
 	def edit
 		@project = Project.find(params[:id])
 	end
 
-	def update
-		
+	def update		
 		@project = Project.find(params[:id])
 		@project.update(project_params)
 		redirect_to project_path(@project)
-
 	end
 
 	def destroy

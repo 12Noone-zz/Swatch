@@ -13,3 +13,9 @@
 		<% end %>
 	</ul>
 <li><a href="<%= new_project_path %>">New Project!</a></li>
+
+<% if current_user %> 
+	<%= link_to "Delete House", house_path(@house), method: :delete, data: {confirm: "This is the equivilant of pouring gasoline in the trashcan, dropping a match, and walking out the front door whistling. All projects will be lost..."} %>
+
+	<%= link_to "Edit House", house_path(@house), method: :update %>
+<% end %>
