@@ -37,7 +37,31 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
-
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">swatch</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><%= link_to "Back to Homes", houses_path(@house)%></li>
+      <li>
+        <% if current_user %>
+          <%= link_to "Sign out", signout_path, id: "sign_out" %>
+        <% end %>
+      </li>
+      
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><%= link_to "Back to Homes", houses_path(@house)%></li>
+      <li>
+        <%= link_to "Facebook Login", "/auth/facebook" %>
+      </li>
+      <li>
+        <% if current_user %>
+          <%= link_to "Sign out", signout_path, id: "sign_out" %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>
 <h2><%= @project.title %> </h2>
 
 <h3><strong>By:</strong> <%= current_user.name %></h3>
