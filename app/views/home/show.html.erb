@@ -3,7 +3,6 @@
 	<div class="nav-wrapper">
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">swatch</i></a>
 		<ul class="right hide-on-med-and-down">
-			<li><%= link_to "Back to Homes", houses_path(@house), :class => 'btn-large' %></li>
 			<li>
 				<% if current_user %>
 					<%= link_to "Sign out", signout_path, id: "sign_out" %>
@@ -12,7 +11,6 @@
 			
 		</ul>
 		<ul class="side-nav" id="mobile-demo">
-			<li><%= link_to "Back to Homes", houses_path(@house), :class => 'btn-large' %></li>
 			<li>
 				<%= link_to "Facebook Login", "/auth/facebook" %>
 			</li>
