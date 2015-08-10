@@ -9,5 +9,11 @@ class House < ActiveRecord::Base
     
     validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
+    def attachments
+    [:image].map do |assn|
+      self.try(assn)
+    end
+  end
+
 end
 

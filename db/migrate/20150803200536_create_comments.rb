@@ -5,8 +5,7 @@ class CreateComments < ActiveRecord::Migration
       t.string :body
       t.string :author_name
 
-      t.references :project, index: true, foreign_key: true
-
+      t.references :project
       t.timestamps null: false
     end
   end

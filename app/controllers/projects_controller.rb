@@ -1,11 +1,13 @@
 class ProjectsController < ApplicationController
-	before_action :require_current_user, :except => :index
+	before_action :require_current_user
 
 
 	def index
 		@project = Project.all
+ 
+ 	end
 		
-	end
+	
 
 	def new 
 		@house = House.find(params["house_id"])
@@ -35,7 +37,7 @@ class ProjectsController < ApplicationController
 		@project.save
 
 		# redirect_to root_path
-		redirect_to project_path(@project)
+		redirect_to house_projects_path
 	end
 
 	def edit

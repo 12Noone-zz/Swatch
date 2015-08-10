@@ -1,20 +1,54 @@
-<h2><%= @house.title %> </h2>
-<h3><strong>By:</strong> <%= current_user.name %></h3>
+<nav>
+	<div class="nav-wrapper">
+		<a href="/" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">swatch</i></a>
+		<ul class="right hide-on-med-and-down">
+			<li><%= link_to "Back to Homes", houses_path(@house)%></li>
+			<li>
+				<% if current_user %>
+					<%= link_to "Sign out", signout_path, id: "sign_out" %>
+				<% end %>
+			</li>
+			
+		</ul>
+		<ul class="side-nav" id="mobile-demo">
+			<li><%= link_to "Back to Homes", houses_path(@house)%></li>
+			<li>
+				<%= link_to "Facebook Login", "/auth/facebook" %>
+			</li>
+			<li>
+				<% if current_user %>
+					<%= link_to "Sign out", signout_path, id: "sign_out" %>
+				<% end %>
+			</li>
+		</ul>
+	</div>
+</nav>
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			<h1><%= @house.title %> </h1>
+			<h3><strong>By:</strong> <%= current_user.name %></h3>
 
-<p><%= @house.content %></p>
-<%= link_to image_tag(@house.image.url(:large)), @house.image.url, :class => 'responsive-img' %>
-<div id="show">
-	<ul>
-		<% @project.each do |project| %>
-		<li>
-			<%= link_to project.title, house_project_path(@house, project) %> 
-		</li>
-		<% end %>
-	</ul>
-<%= link_to 'New Project!', new_house_project_path(@house, @project) %>
+			<p><%= @house.content %></p>
+			 <% @house.attachments.each_with_index do |image, index| %>
+			<%= image_tag image.url(), :class => 'responsive-img' %>
+			<% end %>
+			<div id="show">
+				<ul>
+					<% @project.each do |project| %>
+					<li>
+						<%= link_to project.title, house_project_path(@house, project) %> 
+					</li>
+					<% end %>
+				</ul>
+			<h1>Below you can view all the projects for your house or create a new one!</h1>
+			
+			<%= link_to 'New Project', new_house_project_path(@house, @project), :class => 'btn-large' %>
+	
+				<%= link_to "Delete House", house_path(@house), method: :delete, data: {confirm: "Deleting your house will also delete all projects and comments inside it!"}, :class => 'btn-large' %>
 
-<% if current_user == @house.user_id %> 
-	<%= link_to "Delete House", house_path(@house), method: :delete, data: {confirm: "Deleting your house will also delete all projects and comments inside it!"} %>
-
-	<%= link_to "Edit House", edit_house_path(@house) %>
-<% end %>
+				<%= link_to "Edit House", edit_house_path(@house), :class => 'btn-large' %>
+		
+		</div>
+	</div>
+</div>

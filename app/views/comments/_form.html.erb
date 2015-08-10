@@ -1,6 +1,6 @@
 <h3>Post a Comment</h3>
   <% if current_user %>
-    <%= form_for [ @project, @comment ] do |f| %>
+    <%= form_for [ @project, Comment.new ] do |f| %>
        <p><%= f.label :author_name %><br/>
           <%= f.text_field :author_name %>
       </p> 

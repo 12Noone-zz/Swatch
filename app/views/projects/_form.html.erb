@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<%= form_for [@house, @project], :html => { :multipart => true, :class => 'col s12'} do |f| %>
+		<%= form_for [@house, Project.new], :html => { :multipart => true, :class => 'col s12'} do |f| %>
 			<div class="title">
 				<%= f.text_field :title, :placeholder => "Title" %>
 			</div>
@@ -20,6 +20,7 @@
 			 <%= f.file_field :image5, placeholder: "Upload Photo"%>
 			 <%= f.text_area :notes5, :placeholder => "More about this project!" %>
 			<p>
+			<h2>Add custom tags below to make your projects more searchable!</h2>
 	  			<%= f.label :tag_list %><br/>
 	  			<%= f.text_field :tag_list %>
 			</p>

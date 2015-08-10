@@ -25,8 +25,6 @@ ActiveRecord::Schema.define(version: 20150805182617) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "comments", ["project_id"], name: "index_comments_on_project_id", using: :btree
-
   create_table "houses", force: :cascade do |t|
     t.string   "title"
     t.string   "content"
@@ -109,7 +107,6 @@ ActiveRecord::Schema.define(version: 20150805182617) do
     t.datetime "updated_at",       null: false
   end
 
-  add_foreign_key "comments", "projects"
   add_foreign_key "projects", "houses"
   add_foreign_key "taggings", "projects"
   add_foreign_key "taggings", "tags"

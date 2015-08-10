@@ -1,3 +1,16 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+	width: 60%;
+}
+h1, h2 {
+	text-align: center;
+	font-size: 24px;
+	margin: 25px 0 25px 0;
+}
+
+p {
+	text-align: center;
+}
