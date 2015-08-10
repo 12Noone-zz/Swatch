@@ -29,6 +29,12 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def each_note
+    [:notes1, :notes2, :notes3, :notes4, :notes5].map do |notes|
+      self.try(notes)
+    end
+  end
+
   def tag_list
       self.tags.collect do |tag|
       tag.name

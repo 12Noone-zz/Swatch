@@ -1,21 +1,20 @@
   <%= stylesheet_link_tag    "splash", media: "all", "data-turbolinks-track" => true %>
-<div class="container">
 
-	<div class="background-wrapper">	
+<div class="background-wrapper">	
+	<div class="container">
 		<div class="background">
-
 			<div class="desktop-logo">
 				<h1>Swatch</h1>
 					<p>Record your projects, share your progress.</p>
 			</div>
 
-			<div class="mobile-logo">
-				<h1>S</h1>
+			<div class="mobile-logo valign-wrapper">
+				<h1 class="valign">S</h1>
 			</div>
-			
 		</div>
-	
 	</div>
+	
+</div>
 
 	<p class="mobile-mission">
 		Record your projects,
@@ -26,16 +25,15 @@
 		Record the momentous milestones in turning your house into a home. Share your victories (and defeats) with your friends, family, and the world.
 	</p>
 
-	
-	<div class="buttons pure-g">
-		<div class="login pure-u-1-2">
-			<%= link_to "Facebook Login", "/auth/facebook", id: "sign_in" %>
+<div class="container">
+	<div class="row">
+		<div class="col s12 m6 button-wrapper">
+			<%= link_to 'Explore', projects_path, class: "btn-large" %>
 		</div>
-		<br>
-		
-		<div class="explore pure-u-1-2">
-			<a href="/projects">Explore</a>
+		<div class="col s12 m6 button-wrapper">
+			<div class="big-red-btn">
+				<%= link_to "Facebook Login", "/auth/facebook", class: "btn-large" %>
+			</div>
 		</div>
 	</div>
-		
 </div>

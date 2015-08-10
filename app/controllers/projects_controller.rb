@@ -1,21 +1,22 @@
 class ProjectsController < ApplicationController
 	before_action :require_current_user, :except => :index
 
+
 	def index
 		@project = Project.all
+		
 	end
 
 	def new 
 		@house = House.find(params["house_id"])
-		
+
 		@project = Project.new
 		@project.house_id = @house.id
 	end
 
 	def show 
       	@comment = Comment.new
-		
-
+      	@house = House.find(params["house_id"])
 		@project = Project.find(params[:id])
 		respond_to do |format|
       		format.html  # show.html.erb
@@ -59,6 +60,6 @@ class ProjectsController < ApplicationController
 	private
 
  	def project_params
- 		params.require(:project).permit(:title, :image1, :image2, :image3, :image4, :image5, :content, :notes, :tag_list)
+ 		params.require(:project).permit(:title, :image1, :image2, :image3, :image4, :image5, :content, :notes1, :notes2, :notes3, :notes4, :notes5, :tag_list)
  	end
 end

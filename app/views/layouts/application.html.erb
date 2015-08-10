@@ -2,21 +2,56 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+
   <title>Swatch</title>
 
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "houses", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "projects", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
 
   <%= csrf_meta_tags %>
 
 </head>
 <body>
+<nav class="button-collapse">
+	<div class="nav-wrapper">
+		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">swatch</i></a>
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li>
+				<% if current_user %>
+					<%= link_to "Sign out", signout_path, id: "sign_out" %>
+				<% end %>
+			</li>
+			<li>
+				<%= link_to "Create a House", new_house_path %>
+			</li>
+			<li>
+				<%#= link_to 'New Project!', new_house_project_path(@house, @project) %>
+			</li>
+		</ul>
+		<ul class="side-nav" id="mobile-demo">
+			<li>
+				<%= link_to "Facebook Login", "/auth/facebook" %>
+			</li>
+			<li>
+				<% if current_user %>
+					<%= link_to "Sign out", signout_path, id: "sign_out" %>
+				<% end %>
+			</li>
+			<li>
+				<%= link_to "Create a House", new_house_path %>
+			</li>
+			<li>
+				<%#= link_to 'New Project!', new_house_project_path(@house, @project) %>
+			</li>
+		</ul>
+	</div>
+</nav>
 	
-	<% if current_user %>
-		<%= link_to "Sign out", signout_path, id: "sign_out" %>
-	<% end %>
 <%= yield %>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 </body>
 </html>

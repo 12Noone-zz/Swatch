@@ -4,7 +4,8 @@
 			<% if comment.body %>
 				<p><%= current_user.name %>
 				<p><%= comment.body %></p>
-				<i><%= comment.created_at %></i>
+				<em><%= comment.created_at %></em>
+				<hr>
 			<% end %>
 		</div>
 	<% end %>
