@@ -1,30 +1,26 @@
 class CommentsController < ApplicationController
 
-	def create
-		@comment = Comment.new(comment_params)
-		@comment.project_id = params[:project_id]
-		@comment.project_id = params["project_id"]
-		@comment.save
-
-		redirect_to house_project_path(@comment.project)
-	end
-
-	def update		
-		@comment = Comment.find(params[:id])
-		@comment.update(comment_params)
-		redirect_to comment_path(@comment)
+ 	def create
+ 		@house = House.find(params["house_id"])
+		@project = Project.find(params[:project_id])
+		@comment = @project.comments.create(comment_params)
+    	@comment.author_name = current_user.name
+    	@comment.save
+		redirect_to project_path(@project)
 	end
 
 	def destroy
-		@comment = Comment.find(params[:id])
+		@post = Project.find(params[:project_id])
+		@comment = @project.comments.find(params[:id])
 		@comment.destroy
 
 		respond_to do |format|
-			format.html {redirect_to comments_url}
+			format.html {redirect_to @project}
 		end
 	end
 
-	def comment_params
-		params.require(:comment).permit(:author_name, :body)
-	end
+	private
+		def comment_params
+			params.require(:comment).permit(:name, :content)
+		end
 end
